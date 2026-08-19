@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ms Lê Hằng English - IELTS Reading & Grammar Mock Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-pink: #ff80ab;
+      --primary-purple: #8854c0;
+      --accent-teal: #00C9A7;
+      --accent-yellow: #FDCB6E;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --correct-color: #00D26A;
+      --wrong-color: #FF4757;
+      --highlight-bg: #d1c4e9;
+      --highlight-color: #ffffff;
+      --text-dark: #2d3436;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* Khóa cuộn toàn trang để hai cột cuộn độc lập */
+    }
+
+    body {
+      background: linear-gradient(-45deg, #ff80ab, #8854c0, #00C9A7, #FDCB6E, #ffcdd2, #e1bee7);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><text x="10" y="30" font-size="22">🌸</text><text x="70" y="35" font-size="20">🏡</text><text x="20" y="85" font-size="20">🎁</text><text x="80" y="90" font-size="22">📚</text><text x="50" y="60" font-size="18">🌟</text></svg>');
+      opacity: 0.22;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 3px solid #f8bbd0;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .brand-title h1 {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--primary-purple);
+      line-height: 1.2;
+    }
+
+    .brand-title h2 {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #e91e63;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .timer-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      padding: 4px 14px;
+      border-radius: 25px;
+      box-shadow: 0 3px 0 #e0e0e0;
+      border: 2px solid #f0f0f0;
+    }
+
+    .timer-display {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #d81b60;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .btn-timer {
+      background: var(--primary-pink);
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #d81b60;
+      transition: all 0.2s ease;
+      font-size: 0.8rem;
+    }
+
+    .btn-timer:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 0 #d81b60;
+    }
+
+    .progress-bar-wrapper {
+      width: 100%;
+      background: #e0e0e0;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-yellow), var(--correct-color));
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    .tab-bar {
+      display: flex;
+      background: rgba(255,255,255,0.7);
+      padding: 6px 20px 0;
+      gap: 8px;
+      z-index: 9;
+      flex-shrink: 0;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      background: #fff;
+      border: 2px solid #f8bbd0;
+      border-bottom: none;
+      border-radius: 12px 12px 0 0;
+      font-weight: 800;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--primary-purple);
+      color: white;
+      border-color: var(--primary-purple);
+      transform: translateY(-2px);
+    }
+
+    /* BỐ CỤC CHÍNH HAI CỘT CUỘN ĐỘC LẬP */
+    .main-container {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      gap: 15px;
+      padding: 10px 15px 15px;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .split-pane {
+      flex: 1;
+      height: 100%;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      border: 3px solid #fff;
+      overflow-y: scroll; /* THANH TRƯỢT DỌC ĐỘC LẬP TỪNG PHẦN */
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    .split-pane::-webkit-scrollbar {
+      width: 10px;
+    }
+    .split-pane::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+      border-radius: 10px;
+    }
+    .split-pane::-webkit-scrollbar-thumb {
+      background: var(--primary-pink);
+      border-radius: 10px;
+      border: 2px solid #fff;
+    }
+    .split-pane::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-purple);
+    }
+
+    .passage-title {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--primary-purple);
+      margin-bottom: 12px;
+      text-align: center;
+      border-bottom: 2px dashed #f8bbd0;
+      padding-bottom: 8px;
+    }
+
+    .paragraph-block {
+      margin-bottom: 16px;
+      background: #fff;
+      padding: 14px;
+      border-radius: 15px;
+      border: 2px solid #f3e5f5;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.02);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .trans-toggle-btn {
+      margin-top: 8px;
+      background: #f3e5f5;
+      color: #6a1b9a;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .trans-toggle-btn:hover {
+      background: #e1bee7;
+    }
+
+    .translation-text {
+      display: none;
+      margin-top: 8px;
+      padding: 10px;
+      background: #fce4ec;
+      border-left: 4px solid var(--primary-pink);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #4a148c;
+      line-height: 1.6;
+    }
+
+    .sentence-target {
+      background-color: #fff59d !important;
+      border-radius: 4px;
+      padding: 2px 4px;
+      box-shadow: 0 0 10px #fbc02d;
+      animation: pulseHighlight 2s infinite;
+    }
+
+    @keyframes pulseHighlight {
+      0% { background-color: #fff59d; }
+      50% { background-color: #ffe082; }
+      100% { background-color: #fff59d; }
+    }
+
+    ::selection {
+      background-color: #d1c4e9;
+      color: #ffffff;
+    }
+
+    .custom-highlight {
+      background-color: #d1c4e9 !important;
+      color: #ffffff !important;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 1px 3px;
+    }
+
+    /* CSS Visual Signs Drawing */
+    .sign-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 12px 0;
+      border: 2px dashed #ce93d8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .sign-box-notice {
+      border: 3px solid #2d3436;
+      border-radius: 12px;
+      padding: 12px 18px;
+      background: #f8f9fa;
+      text-align: center;
+      font-weight: 800;
+      color: #2d3436;
+      box-shadow: 0 4px 0 #2d3436;
+      max-width: 340px;
+      width: 100%;
+    }
+
+    .sign-circle-red {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      border: 7px solid #d63031;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: #fff;
+      margin: 0 auto 6px;
+    }
+
+    .sign-circle-red::before {
+      content: "";
+      position: absolute;
+      width: 65px;
+      height: 7px;
+      background: #d63031;
+      transform: rotate(-45deg);
+    }
+
+    .glossary-section {
+      margin-top: 25px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      border: 2px solid #e1bee7;
+    }
+
+    .glossary-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary-purple);
+      margin-bottom: 12px;
+    }
+
+    .glossary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .glossary-table th, .glossary-table td {
+      border: 1px solid #f8bbd0;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    .glossary-table th {
+      background: #f8bbd0;
+      color: #8854c0;
+      font-weight: 800;
+    }
+
+    .glossary-table tr:nth-child(even) {
+      background: #fcf4f8;
+    }
+
+    .question-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 20px;
+      border: 3px solid #f0f0f0;
+      box-shadow: 0 5px 0 #e0e0e0;
+      transition: transform 0.2s;
+    }
+
+    .question-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .question-number {
+      font-weight: 900;
+      color: var(--primary-purple);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .question-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .mcq-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mcq-btn {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 14px;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #dee2e6;
+      transition: all 0.15s ease;
+      color: #495057;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mcq-btn:hover {
+      background: #fce4ec;
+      border-color: var(--primary-pink);
+      transform: scale(1.01);
+    }
+
+    .mcq-btn.correct {
+      background: var(--correct-color) !important;
+      color: white !important;
+      border-color: #00b853 !important;
+      box-shadow: 0 4px 0 #009624 !important;
+    }
+
+    .mcq-btn.wrong {
+      background: var(--wrong-color) !important;
+      color: white !important;
+      border-color: #d63031 !important;
+      box-shadow: 0 4px 0 #c0392b !important;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .explanation-box {
+      display: none;
+      margin-top: 15px;
+      background: #f3e5f5;
+      border-radius: 14px;
+      padding: 14px;
+      border-left: 5px solid var(--primary-purple);
+      font-size: 0.9rem;
+      animation: fadeIn 0.3s ease;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-step-title {
+      font-weight: 800;
+      color: var(--primary-purple);
+      margin-top: 8px;
+    }
+
+    .btn-locate {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #fff;
+      color: #6a1b9a;
+      border: 2px solid #ab47bc;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 2px 0 #ab47bc;
+      transition: all 0.2s;
+    }
+
+    .btn-locate:hover {
+      background: #ab47bc;
+      color: white;
+    }
+
+    .action-bar {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .btn-submit-test {
+      background: linear-gradient(45deg, #FF4081, #7C4DFF);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 900;
+      padding: 12px 35px;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 5px 0 #c2185b;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-submit-test:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 #c2185b;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-card {
+      background: #fff;
+      border-radius: 25px;
+      padding: 30px;
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 4px solid var(--primary-pink);
+      animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popUp {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-score {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--primary-purple);
+      margin: 12px 0;
+    }
+
+    .modal-badge {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #e91e63;
+      margin-bottom: 15px;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <header>
+    <div class="brand-title">
+      <h1>Ms Lê Hằng English</h1>
+      <h2>IELTS READING & GRAMMAR PRACTICE TEST</h2>
+    </div>
+
+    <div class="timer-container">
+      <span style="font-size: 1.1rem;">⏱️</span>
+      <div id="timerDisplay" class="timer-display">25:00</div>
+      <button id="btnTimerControl" class="btn-timer" onclick="toggleTimer()">BẮT ĐẦU TÍNH GIỜ LÀM BÀI</button>
+    </div>
+  </header>
+
+  <div style="padding: 0 20px; background: rgba(255,255,255,0.85);">
+    <div class="progress-bar-wrapper">
+      <div id="progressBarFill" class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(1)">Bài 1: Signs & Notices (Section V - Q1-Q6)</button>
+    <button class="tab-btn" onclick="switchTab(2)">Bài 2: Cloze Passages (Hoa Ban & Rong House)</button>
+    <button class="tab-btn" onclick="switchTab(3)">Bài 3: Reading Comprehension (Exam Stress & Gift Giving)</button>
+    <button class="tab-btn" onclick="switchTab(4)">Bài 4: Sentence Insertion (Country Life & Hobbies)</button>
+  </div>
+
+  <div class="main-container">
+
+    <!-- LEFT PANE: READING PASSAGES & VISUAL NOTICES (Cuộn riêng bên trái) -->
+    <div class="split-pane" id="passagePane">
+      
+      <!-- TAB 1 CONTENT: SIGNS & NOTICES -->
+      <div id="passage1" class="passage-content">
+        <h2 class="passage-title">SECTION V: SIGNS AND NOTICES</h2>
+        
+        <!-- Sign 1: NOT AN EXIT -->
+        <div class="sign-card-wrapper">
+          <div class="sign-box-notice" style="border: 3px solid #d63031;">
+            <strong style="color:#d63031; font-size:1.2rem; display:block;">NOT AN EXIT</strong>
+            <div class="sign-circle-red" style="width:50px; height:50px; margin:4px auto;"><span style="font-size:1.2rem;">🚪</span></div>
+          </div>
+          <p style="margin-top:6px; font-weight:800; color:#555;">Sign 1: Exit Restriction Sign</p>
+        </div>
+
+        <!-- Sign 2: NO U-TURN -->
+        <div class="sign-card-wrapper">
+          <div class="sign-circle-red"><span style="font-size:1.8rem;">↩️</span></div>
+          <strong style="color:#d63031; margin-top:4px;">NO U-TURN</strong>
+          <p style="margin-top:4px; font-weight:800; color:#555;">Sign 2: No U-Turn Traffic Sign</p>
+        </div>
+
+        <!-- Sign 3: CAUTION SLOW DOWN -->
+        <div class="sign-card-wrapper">
+          <div class="sign-box-notice" style="background:#fff3cd; border-color:#856404; color:#856404;">
+            <strong>⚠️ CAUTION ⚠️</strong><br>
+            SLOW DOWN<br>
+            <small>PEDESTRIAN TRAFFIC</small>
+          </div>
+          <p style="margin-top:6px; font-weight:800; color:#555;">Sign 3: Pedestrian Traffic Caution Sign</p>
+        </div>
+
+        <!-- Sign 4: Medicine Dosage -->
+        <div class="sign-card-wrapper">
+          <div class="sign-box-notice" style="background:#e8f4fd; border-color:#0984e3; color:#0984e3;">
+            💊 <strong>Take three times a day after meals.</strong><br>
+            <em>Tablets must not be given to children under 12.</em>
+          </div>
+          <p style="margin-top:6px; font-weight:800; color:#555;">Notice 4: Medicine Usage Label</p>
+        </div>
+
+        <!-- Sign 5: Special Offer Swimming -->
+        <div class="sign-card-wrapper">
+          <div class="sign-box-notice" style="background:#fce4ec; border-color:#d81b60; color:#d81b60;">
+            🌟 <strong>SPECIAL OFFER!</strong> 🌟<br>
+            If you use the swimming pool ten times in one month, you can attend one Water Fitness Class <strong>free of charge!</strong>
+          </div>
+          <p style="margin-top:6px; font-weight:800; color:#555;">Notice 5: Swimming Pool Promo Notice</p>
+        </div>
+
+        <!-- Sign 6: Activity Sign-up -->
+        <div class="sign-card-wrapper">
+          <div class="sign-box-notice" style="background:#fffde7; border-color:#f57f17; color:#f57f17;">
+            📢 Please sign up for next week's afternoon activities before Friday lunchtime. If you don't do this, we will select activities for you.
+          </div>
+          <p style="margin-top:6px; font-weight:800; color:#555;">Notice 6: School Activity Notice</p>
+        </div>
+
+        <div class="glossary-section">
+          <div class="glossary-title">📖 Vocabulary Bank - Bài 1 (Signs & Notices)</div>
+          <table class="glossary-table">
+            <thead>
+              <tr><th>Word / Phrase</th><th>POS</th><th>Vietnamese Meaning</th><th>Synonym / Context</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Exit</td><td>(n)</td><td>Lối thoát hiểm, lối ra</td><td>Way out, egress</td></tr>
+              <tr><td>U-turn</td><td>(n)</td><td>Quay đầu xe (chữ U)</td><td>Turning 180 degrees</td></tr>
+              <tr><td>Pedestrian</td><td>(n)</td><td>Người đi bộ</td><td>Walker, person on foot</td></tr>
+              <tr><td>Free of charge</td><td>(adj phr)</td><td>Miễn phí</td><td>Costless, complimentary</td></tr>
+              <tr><td>Sign up</td><td>(phr v)</td><td>Đăng ký, ghi danh</td><td>Register, enroll</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2 CONTENT: CLOZE PASSAGES -->
+      <div id="passage2" class="passage-content" style="display:none;">
+        <h2 class="passage-title">SECTION VI: CLOZE PASSAGES</h2>
+
+        <!-- Passage 1: Hoa Ban Festival -->
+        <div class="paragraph-block">
+          <p><strong>Passage 1: Hoa Ban Festival</strong></p>
+          <p style="margin-top:8px;">
+            <span id="p2-s1" class="sentence">Spring is a time when there are many festivals in our country.</span> 
+            <span id="p2-s2" class="sentence">Among them, Hoa Ban Festival is the most beautiful and interesting and it takes place in Lai Chau.</span> 
+            <span id="p2-s3" class="sentence">It is typical of the (1)______ life of the Thai people.</span> 
+            <span id="p2-s4" class="sentence">In the second lunar month of the year, when it (2)______ warmer and <em>hoa ban</em> - a kind of beautiful flower in the northwest mountainous area - blossoms, Hoa Ban Festival is (3)______.</span> 
+            <span id="p2-s5" class="sentence">This is a great time for everyone, (4)______ for boys and girls.</span> 
+            <span id="p2-s6" class="sentence">The boy (5)______ the most beautiful flower and gives it to his girlfriend.</span> 
+            <span id="p2-s7" class="sentence">This is not only a time for love but also for the Thai people to (6)______ for good crops, for happiness, and express their special thanks to the Gods and (7)______.</span>
+          </p>
+          <button class="trans-toggle-btn" onclick="toggleTranslation('trans2_1')">🌟 Mở dịch đoạn này</button>
+          <div id="trans2_1" class="translation-text">
+            Mùa xuân là thời điểm diễn ra nhiều lễ hội ở nước ta. Trong số đó, Lễ hội Hoa Ban là lễ hội đẹp và thú vị nhất diễn ra ở Lai Châu. Đây là nét đặc trưng của đời sống văn hóa của người Thái. Vào tháng Hai âm lịch hàng năm, khi thời tiết trở nên ấm áp hơn và hoa ban - loài hoa tuyệt đẹp của vùng núi Tây Bắc - nở rộ, Lễ hội Hoa Ban được tổ chức. Đây là thời điểm tuyệt vời cho tất cả mọi người, đặc biệt là các nam thanh nữ tú. Các chàng trai hái những bông hoa đẹp nhất tặng bạn gái. Đây không chỉ là thời gian cho tình yêu mà còn là dịp để đồng bào người Thái cầu nguyện cho mùa màng bội thu, cho hạnh phúc và bày tỏ lòng biết ơn sâu sắc tới các vị Thần và tổ tiên.
+          </div>
+        </div>
+
+        <!-- Passage 2: The Rong House -->
+        <div class="paragraph-block">
+          <p><strong>Passage 2: The Rong House</strong></p>
+          <p style="margin-top:8px;">
+            <span id="p2-s8" class="sentence">The Rong House can only be found in villages to the north of the Central Highlands, especially in Gia Lai and Kon Tum provinces.</span> 
+            <span id="p2-s9" class="sentence">It is a large, imposing, beautifully decorated stilt house built (1)______ the middle of the village.</span> 
+            <span id="p2-s10" class="sentence">It is where community activities take place, meetings, wedding ceremonies, or praying ceremonies.</span> 
+            <span id="p2-s11" class="sentence">It is also the place for reception of guests.</span> 
+            <span id="p2-s12" class="sentence">The Rong House of each ethnic group has its own architectural style, design, and decor.</span> 
+            <span id="p2-s13" class="sentence">Yet there are shared (2)______.</span> 
+            <span id="p2-s14" class="sentence">In the village, it is often the biggest house roofed with yellow-dried thatch leaves and having 8 big wood columns.</span> 
+            <span id="p2-s15" class="sentence">The rafters are decorated with patterns of bright colours, depicting religious scenes, legendary stories about ancient heroes, stylized animals, and other familiar things of the village life.</span> 
+            <span id="p2-s16" class="sentence">The most distinction of the decor of the Rong House is the (3)______ of the brilliant God of Sun.</span> 
+            <span id="p2-s17" class="sentence">The Rong House is a (4)______ of the culture of Central Highlanders, an age-old and stable culture.</span> 
+            <span id="p2-s18" class="sentence">The bigger the house, the wealthier the village is. It is a (5)______ of the whole village.</span>
+          </p>
+          <button class="trans-toggle-btn" onclick="toggleTranslation('trans2_2')">🌟 Mở dịch đoạn này</button>
+          <div id="trans2_2" class="translation-text">
+            Nhà Rông chỉ có thể tìm thấy ở các buôn làng phía bắc Tây Nguyên, đặc biệt là ở các tỉnh Gia Lai và Kon Tum. Đó là một ngôi nhà sàn to lớn, bề thế, được trang trí lộng lẫy được xây dựng ở trung tâm của buôn làng. Đó là nơi diễn ra các hoạt động cộng đồng, hội họp, đám cưới hay các nghi lễ cúng tế. Đây cũng là nơi đón tiếp khách quý. Nhà Rông của mỗi dân tộc đều có phong cách kiến trúc, thiết kế và trang trí riêng. Tuy nhiên vẫn có những nét đặc trưng chung. Trong làng, đây thường là ngôi nhà lớn nhất được lợp bằng lá tranh khô vàng óng và có 8 cột gỗ lớn. Các vì kèo được trang trí hoa văn rực rỡ sắc màu, khắc họa các hoạt cảnh tôn giáo, truyện truyền thuyết về các vị anh hùng cổ xưa, muông thú cách điệu và những hình ảnh quen thuộc của đời sống buôn làng. Nét nổi bật nhất trong trang trí Nhà Rông là hình ảnh của Thần Mặt Trời rực rỡ. Nhà Rông là biểu tượng văn hóa của đồng bào Tây Nguyên, một nền văn hóa lâu đời và bền vững. Nhà càng to thì buôn làng càng giàu có. Đó là niềm tự hào của cả buôn làng.
+          </div>
+        </div>
+
+        <div class="glossary-section">
+          <div class="glossary-title">📖 Vocabulary Bank - Bài 2 (Ethnic Culture)</div>
+          <table class="glossary-table">
+            <thead>
+              <tr><th>Word / Phrase</th><th>POS</th><th>Vietnamese Meaning</th><th>Synonym / Context</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Blossom</td><td>(v)</td><td>Nở rộ (hoa)</td><td>Bloom, flower</td></tr>
+              <tr><td>Imposing</td><td>(adj)</td><td>Uy nghi, bề thế, tráng lệ</td><td>Grand, impressive, majestic</td></tr>
+              <tr><td>Stilt house</td><td>(n phr)</td><td>Nhà sàn</td><td>Elevated wooden house</td></tr>
+              <tr><td>Shared features</td><td>(n phr)</td><td>Những nét đặc trưng chung</td><td>Common characteristics</td></tr>
+              <tr><td>Depict</td><td>(v)</td><td>Khắc họa, miêu tả</td><td>Portray, represent, show</td></tr>
+              <tr><td>Pride</td><td>(n)</td><td>Niềm tự hào, sự kiêu hãnh</td><td>Source of satisfaction</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3 CONTENT: READING COMPREHENSION -->
+      <div id="passage3" class="passage-content" style="display:none;">
+        <h2 class="passage-title">SECTION VII: READING COMPREHENSION</h2>
+
+        <!-- Text 1: Exam Stress -->
+        <div class="paragraph-block">
+          <p><strong>Text 1: Teenagers and Exam Stress</strong></p>
+          <p style="margin-top:8px;">
+            <span id="p3-s1" class="sentence">Teenagers face a lot of pressure when it comes to exams.</span> 
+            <span id="p3-s2" class="sentence">Exam stress can be more than feeling nervous on the day of an exam.</span> 
+            <span id="p3-s3" class="sentence">It can also be how you feel building up to exams, during exams and when waiting for results.</span> 
+            <span id="p3-s4" class="sentence">Exam stress can not only result in physical symptoms like headaches, fatigue, or loss of appetite, but also create mental and emotional effects such as anxiety, depression, or sleeplessness.</span> 
+            <span id="p3-s5" class="sentence">Moreover, it can negatively affect their academic performance.</span> 
+            <span id="p3-s6" class="sentence">Causes of exam stress can arise from within, such as fear of failure, lack of preparation, or from external sources like parents or teachers.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p3-s7" class="sentence">However, maintaining a balanced and healthy lifestyle can be a good way to manage exam stress.</span> 
+            <span id="p3-s8" class="sentence">It's important that teenagers get plenty of sleep, have regular study breaks, and make time for relaxation and exercise.</span> 
+            <span id="p3-s9" class="sentence">Parents also have a crucial role to play by providing support, and encouragement.</span> 
+            <span id="p3-s10" class="sentence">Teachers can help by giving students study tips and techniques that can help them prepare for exams.</span> 
+            <span id="p3-s11" class="sentence">In conclusion, while experiencing exam stress is <strong>normal</strong>, the <strong>effects</strong> can be serious and long-lasting.</span> 
+            <span id="p3-s12" class="sentence">Finding healthy ways to cope with stress and seeking help or guidance when needed can make all the difference for teenagers.</span>
+          </p>
+          <button class="trans-toggle-btn" onclick="toggleTranslation('trans3_1')">🌟 Mở dịch đoạn này</button>
+          <div id="trans3_1" class="translation-text">
+            Thanh thiếu niên phải đối mặt với rất nhiều áp lực khi nói đến các kỳ thi. Căng thẳng thi cử có thể không chỉ là cảm giác hồi hộp vào ngày thi. Nó còn là cảm giác tích tụ dần trước kỳ thi, trong kỳ thi và khi chờ đợi kết quả. Căng thẳng thi cử không chỉ dẫn đến các triệu chứng thể chất như đau đầu, mệt mỏi hay chán ăn mà còn gây ra các tác động tâm lý và cảm xúc như lo âu, trầm cảm hoặc mất ngủ. Hơn nữa, nó có thể ảnh hưởng tiêu cực đến kết quả học tập. Nguyên nhân gây căng thẳng có thể xuất phát từ bên trong như sợ thất bại, thiếu chuẩn bị, hoặc từ các nguồn bên ngoài như cha mẹ hay thầy cô.
+            Tuy nhiên, duy trì một lối sống cân bằng và lành mạnh có thể là cách tốt để kiểm soát căng thẳng thi cử. Điều quan trọng là thanh thiếu niên phải ngủ đủ giấc, có các quãng nghỉ học đều đặn và dành thời gian thư giãn cũng như tập thể dục. Cha mẹ cũng đóng vai trò then chốt trong việc hỗ trợ và động viên. Thầy cô có thể giúp đỡ bằng cách đưa ra các mẹo học tập và kỹ thuật giúp học sinh chuẩn bị tốt cho kỳ thi. Tóm lại, dù việc trải qua căng thẳng thi cử là bình thường nhưng các hệ quả của nó có thể nghiêm trọng và lâu dài. Tìm kiếm các cách lành mạnh để đối phó với căng thẳng và tìm kiếm sự giúp đỡ khi cần có thể tạo nên sự khác biệt lớn.
+          </div>
+        </div>
+
+        <!-- Text 2: Gift-Giving in Vietnam -->
+        <div class="paragraph-block">
+          <p><strong>Text 2: Gift-giving in Viet Nam</strong></p>
+          <p style="margin-top:8px;">
+            <span id="p3-s13" class="sentence">Gift-giving is important in Viet Nam because of the significance of interpersonal relationships in Vietnamese culture.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p3-s14" class="sentence">First and foremost, do not encourage corruption. There is a clear cut between gift-giving and bribery.</span> 
+            <span id="p3-s15" class="sentence">Nevertheless, it is common in Viet Nam for exchanging small gifts on certain occasions such as anniversaries, Tet holidays... to express respect, love, appreciation, or gratitude.</span> 
+            <span id="p3-s16" class="sentence">Gift-giving customs depend on the context. If it is a private gift for one Vietnamese partner you should give the gift at a private occasion.</span> 
+            <span id="p3-s17" class="sentence">If you have a gift for the whole office or company, you should give it after the business meeting with the whole office employee.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p3-s18" class="sentence">Do not wrap a gift in black paper because this color is unlucky and associated with funerals in Viet Nam.</span> 
+            <span id="p3-s19" class="sentence">Gifts that symbolize cutting such as scissors, knives, and other sharp objects should be avoided because they mean the cutting of the relationship.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p3-s20" class="sentence">Vietnamese may or may not open these gifts when they are received; leave the option to them.</span> 
+            <span id="p3-s21" class="sentence">You will also receive gifts and should defer to your host as to whether you should open them when receiving or not.</span> 
+            <span id="p3-s22" class="sentence">Regardless of when it is opened or what it is, profuse thanks are always appropriate.</span>
+          </p>
+          <button class="trans-toggle-btn" onclick="toggleTranslation('trans3_2')">🌟 Mở dịch đoạn này</button>
+          <div id="trans3_2" class="translation-text">
+            Tặng quà là một nét văn hóa quan trọng ở Việt Nam do ý nghĩa to lớn của các mối quan hệ giữa các cá nhân trong văn hóa người Việt.
+            Trước hết, không cổ súy cho nạn tham nhũng. Có ranh giới rõ ràng giữa việc tặng quà và hối lộ. Tuy nhiên, việc trao đổi những món quà nhỏ vào các dịp lễ tết, kỷ niệm... để bày tỏ sự tôn trọng, tình yêu thương, sự trân trọng hay lòng biết ơn là rất phổ biến ở Việt Nam. Phong tục tặng quà phụ thuộc vào từng bối cảnh. Nếu là món quà riêng tư cho một đối tác, bạn nên tặng vào một dịp riêng. Nếu bạn có quà cho cả văn phòng hay công ty, bạn nên tặng sau cuộc họp kinh doanh với toàn thể nhân viên.
+            Không gói quà bằng giấy đen vì màu này mang lại điều xui xẻo và gắn liền với tang lễ ở Việt Nam. Những món quà tượng trưng cho sự chia cắt như kéo, dao và các vật sắc nhọn khác nên tránh vì chúng mang ý nghĩa cắt đứt mối quan hệ.
+            Người Việt Nam có thể mở hoặc không mở quà ngay khi nhận; hãy để họ tự quyết định. Bạn cũng sẽ nhận được quà và nên theo ý chủ nhà xem có nên mở ngay lúc nhận hay không. Bất kể quà được mở khi nào hay là món gì, những lời cảm ơn chân thành luôn là điều phù hợp nhất.
+          </div>
+        </div>
+
+        <div class="glossary-section">
+          <div class="glossary-title">📖 Vocabulary Bank - Bài 3 (Reading Texts)</div>
+          <table class="glossary-table">
+            <thead>
+              <tr><th>Word / Phrase</th><th>POS</th><th>Vietnamese Meaning</th><th>Synonym / Context</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Sleeplessness</td><td>(n)</td><td>Sự mất ngủ</td><td>Insomnia, wakefulness</td></tr>
+              <tr><td>Effects</td><td>(n)</td><td>Hậu quả, kết quả, tác động</td><td>Results, impacts, consequences</td></tr>
+              <tr><td>Abnormal</td><td>(adj)</td><td>Bất thường (Trái nghĩa normal)</td><td>Unusual, irregular, atypical</td></tr>
+              <tr><td>Bribery</td><td>(n)</td><td>Sự hối lộ, đút lót</td><td>Corruption, illicit payoff</td></tr>
+              <tr><td>Gratitude</td><td>(n)</td><td>Lòng biết ơn</td><td>Thankfulness, appreciation</td></tr>
+              <tr><td>Profuse thanks</td><td>(n phr)</td><td>Lời cảm ơn sâu sắc/nhiều lần</td><td>Heartfelt thanks</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 4 CONTENT: SENTENCE INSERTION -->
+      <div id="passage4" class="passage-content" style="display:none;">
+        <h2 class="passage-title">SECTION IX: SENTENCE INSERTION</h2>
+
+        <!-- Text 1: Country Life vs City Life -->
+        <div class="paragraph-block">
+          <p><strong>Text 1: Country Life vs City Life</strong></p>
+          <p style="margin-top:8px;">
+            <span id="p4-s1" class="sentence">City life has its advantages and disadvantages and so does country life; however, there seems to be an increased interest in the country, especially among young families.</span> 
+            <span id="p4-s2" class="sentence">If you are thinking about moving to the country as well but are not sure if it is a good idea, (1)______.</span> 
+            <span id="p4-s3" class="sentence">In the country, you are woken up by the singing of the birds rather by the noise from the traffic.</span> 
+            <span id="p4-s4" class="sentence">Homes in the countryside are surrounded by nature (2)______.</span> 
+            <span id="p4-s5" class="sentence">Due to virtual absence of cars and factories, (3)______.</span> 
+            <span id="p4-s6" class="sentence">Clean air is one of the main advantages of country life over city dwelling.</span> 
+            <span id="p4-s7" class="sentence">In the country, everyone knows everyone and people actually say 'hello'.</span> 
+            <span id="p4-s8" class="sentence">Communities in the country are much smaller (4)______.</span> 
+            <span id="p4-s9" class="sentence">People in the country are really friendlier and are prepared to help without asking anything in return.</span>
+          </p>
+          <button class="trans-toggle-btn" onclick="toggleTranslation('trans4_1')">🌟 Mở dịch đoạn này</button>
+          <div id="trans4_1" class="translation-text">
+            Cuộc sống thành thị có những ưu và nhược điểm của nó và cuộc sống nông thôn cũng vậy; tuy nhiên, dường như đang có sự quan tâm ngày càng tăng đối với vùng quê, đặc biệt là trong các gia đình trẻ. Nếu bạn cũng đang cân nhắc chuyển về nông thôn nhưng chưa chắc đó có phải là một ý tưởng hay không, việc xem xét các lợi ích của cuộc sống nông thôn có thể giúp ích cho bạn. Ở nông thôn, bạn được đánh thức bởi tiếng chim hót thay vì tiếng ồn ào từ xe cộ. Những ngôi nhà ở nông thôn được bao quanh bởi thiên nhiên, điều này có tác dụng xoa dịu cả tâm trí lẫn cơ thể. Do hầu như không có ô tô và nhà máy, bạn sẽ không phải hít thở bất kỳ loại khói bụi độc hại nào ở nông thôn. Không khí trong lành là một trong những ưu điểm chính của cuộc sống nông thôn so với chốn đô thị. Ở làng quê, mọi người đều quen biết nhau và luôn chào hỏi nhau. Các cộng đồng ở nông thôn tuy nhỏ hơn nhiều nhưng họ gắn kết và cởi mở hơn. Người dân quê thực sự thân thiện hơn và luôn sẵn sàng giúp đỡ mà không đòi hỏi bất cứ điều gì đáp lại.
+          </div>
+        </div>
+
+        <!-- Text 2: Hobbies -->
+        <div class="paragraph-block">
+          <p><strong>Text 2: Hobbies in Daily Life</strong></p>
+          <p style="margin-top:8px;">
+            <span id="p4-s10" class="sentence">A hobby is a regular activity that is done for enjoyment, typically during one's leisure time.</span> 
+            <span id="p4-s11" class="sentence">(5)______, engaging in creative and artistic pursuits, playing sports, or pursuing other amusements.</span> 
+            <span id="p4-s12" class="sentence">By continually participating in a particular hobby, one can acquire substantial skill and knowledge in that area.</span> 
+            <span id="p4-s13" class="sentence">(6)______, more specifically during primary school, to late life.</span> 
+            <span id="p4-s14" class="sentence">We can never predict when we develop interests in new things and have a likeness towards it.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p4-s15" class="sentence">In this busy daily schedule, (7)______.</span> 
+            <span id="p4-s16" class="sentence">Indulging in a hobby is actually good for a sound health.</span> 
+            <span id="p4-s17" class="sentence">(8)______ and that particular time is when we like to do something that gives us immense happiness.</span>
+          </p>
+          <button class="trans-toggle-btn" onclick="toggleTranslation('trans4_2')">🌟 Mở dịch đoạn này</button>
+          <div id="trans4_2" class="translation-text">
+            Sở thích là một hoạt động thường xuyên được thực hiện để giải trí, điển hình là trong thời gian rảnh rỗi. Các sở thích có thể bao gồm việc sưu tầm các vật phẩm theo chủ đề, tham gia vào các hoạt động sáng tạo nghệ thuật, chơi thể thao hoặc theo đuổi các trò tiêu khiển khác. Bằng cách liên tục tham gia vào một sở thích cụ thể, một người có thể tích lũy được kỹ năng và kiến thức đáng kể trong lĩnh vực đó. Sở thích là điều mà một người phát triển từ thời thơ ấu, cụ thể hơn là trong những năm tiểu học, cho đến tận cuối đời. Chúng ta không bao giờ có thể đoán trước được khi nào mình sẽ nảy sinh hứng thú với những điều mới mẻ. Trong lịch trình bận rộn hàng ngày này, tất cả chúng ta đều bận rộn với thói quen sinh hoạt đến mức đôi khi quên dành thời gian cho sở thích của mình. Đắm mình trong một sở thích thực sự tốt cho một sức khỏe lành mạnh. Tất cả chúng ta đều cần một khoảng thời gian thư nhàn cho riêng mình và khoảng thời gian đặc biệt đó là khi chúng ta muốn làm điều gì đó mang lại cho ta niềm hạnh phúc to lớn.
+          </div>
+        </div>
+
+        <div class="glossary-section">
+          <div class="glossary-title">📖 Vocabulary Bank - Bài 4 (Country Life & Hobbies)</div>
+          <table class="glossary-table">
+            <thead>
+              <tr><th>Word / Phrase</th><th>POS</th><th>Vietnamese Meaning</th><th>Synonym / Context</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Soothing effect</td><td>(n phr)</td><td>Tác dụng xoa dịu, thư giãn</td><td>Calming/relaxing effect</td></tr>
+              <tr><td>Connected</td><td>(adj)</td><td>Gắn kết, thân thiết</td><td>Bonded, close-knit</td></tr>
+              <tr><td>Substantial</td><td>(adj)</td><td>Đáng kể, to lớn</td><td>Significant, considerable</td></tr>
+              <tr><td>Immense happiness</td><td>(n phr)</td><td>Niềm hạnh phúc bao la</td><td>Great joy, bliss</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANE: INTERACTIVE EXERCISES (Cuộn riêng bên phải) -->
+    <div class="split-pane" id="exercisePane">
+      
+      <!-- CÂU HỎI BÀI 1 (TAB 1) -->
+      <div id="exerciseTab1" class="exercise-tab-content">
+        <h3 style="color:var(--primary-purple); margin-bottom:15px;">SECTION V: SIGNS & NOTICES (QUESTIONS 1 - 6)</h3>
+
+        <!-- Q1 -->
+        <div class="question-card" id="qcard-s-1">
+          <div class="question-number">Question 1</div>
+          <div class="question-text">What does this sign indicate? ("NOT AN EXIT")</div>
+          <div class="mcq-options" id="opts-s-1" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('s-1', 'A', 'D')">A. This door leads to the exit.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-1', 'B', 'D')">B. You must not go through without permission.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-1', 'C', 'D')">C. You must not go through this door.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-1', 'D', 'D')">D. This is not an exit.</button>
+          </div>
+          <div class="explanation-box" id="exp-s-1">
+            <div class="exp-step-title">1. Dịch nghĩa biển báo:</div>
+            <p>"NOT AN EXIT" = ĐÂY KHÔNG PHẢI LỐI RA.</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Biển báo chỉ rõ đây không phải là cửa thoát hiểm/lối ra -> "This is not an exit" -> <strong>Chọn D</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card" id="qcard-s-2">
+          <div class="question-number">Question 2</div>
+          <div class="question-text">What does this sign indicate? ("NO U-TURN")</div>
+          <div class="mcq-options" id="opts-s-2" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('s-2', 'A', 'B')">A. U-turns are allowed here.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-2', 'B', 'B')">B. Only straight-ahead driving is allowed here.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-2', 'C', 'B')">C. U-turns are allowed during certain hours.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-2', 'D', 'B')">D. U-turns are allowed with caution.</button>
+          </div>
+          <div class="explanation-box" id="exp-s-2">
+            <div class="exp-step-title">1. Dịch nghĩa biển báo:</div>
+            <p>"NO U-TURN" = CẤM QUAY ĐẦU XE (không được phép quay đầu, phải tiếp tục đi thẳng/không quay lại).</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Trong các lựa chọn, A, C, D đều cho phép quay đầu (sai). Đáp án đúng là B -> <strong>Chọn B</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card" id="qcard-s-3">
+          <div class="question-number">Question 3</div>
+          <div class="question-text">What does this sign indicate? ("CAUTION / SLOW DOWN / PEDESTRIAN TRAFFIC")</div>
+          <div class="mcq-options" id="opts-s-3" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('s-3', 'A', 'C')">A. Pedestrians will obstruct traffic.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-3', 'B', 'C')">B. You should drive carefully because there are slow pedestrians.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-3', 'C', 'C')">C. You should slow down and pay attention to pedestrians.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-3', 'D', 'C')">D. Pedestrians should not walk too fast.</button>
+          </div>
+          <div class="explanation-box" id="exp-s-3">
+            <div class="exp-step-title">1. Dịch nghĩa biển báo:</div>
+            <p>"CHÚ Ý: GIẢM TỐC ĐỘ - CÓ NGƯỜI ĐI BỘ QUA LẠI".</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Biển yêu cầu tài xế giảm tốc độ và chú ý quan sát người đi bộ ("slow down and pay attention to pedestrians") -> <strong>Chọn C</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card" id="qcard-s-4">
+          <div class="question-number">Question 4</div>
+          <div class="question-text">What does the message mean? ("Take three times a day after meals. Tablets must not be given to children under 12.")</div>
+          <div class="mcq-options" id="opts-s-4" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('s-4', 'A', 'B')">A. Take tablets three times a day after meals; suitable for children under 12.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-4', 'B', 'B')">B. Take tablets three times a day after meals; not for children under 12.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-4', 'C', 'B')">C. Take tablets once a day; suitable for children under 12.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-4', 'D', 'B')">D. Take tablets three times a day before meals; suitable for children under 12.</button>
+          </div>
+          <div class="explanation-box" id="exp-s-4">
+            <div class="exp-step-title">1. Dịch nghĩa hướng dẫn:</div>
+            <p>"Uống 3 lần mỗi ngày sau bữa ăn. Không được cho trẻ em dưới 12 tuổi uống thuốc này."</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>"three times a day after meals; not for children under 12" -> <strong>Chọn B</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-card" id="qcard-s-5">
+          <div class="question-number">Question 5</div>
+          <div class="question-text">What does the notice say? ("If you use the swimming pool ten times in one month, you can attend one Water Fitness Class free of charge!")</div>
+          <div class="mcq-options" id="opts-s-5" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('s-5', 'A', 'A')">A. The water fitness classes are free to people who swim ten times in a month.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-5', 'B', 'A')">B. This month, you can go to Water Fitness Classes and use the swimming pool ten times without paying.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-5', 'C', 'A')">C. The swimming pool is free to people who go to the Water Fitness Classes.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-5', 'D', 'A')">D. You can attend as many water fitness classes as you want if you use the pool ten times.</button>
+          </div>
+          <div class="explanation-box" id="exp-s-5">
+            <div class="exp-step-title">1. Dịch nghĩa thông báo:</div>
+            <p>"Nếu bạn sử dụng hồ bơi 10 lần trong một tháng, bạn có thể tham gia một lớp Thể dục Dưới nước miễn phí!"</p>
+            <div class="exp-step-title">2. Tại sao chọn A?</div>
+            <p>Lớp thể dục miễn phí cho người bơi 10 lần/tháng -> <strong>Chọn A</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question-card" id="qcard-s-6">
+          <div class="question-number">Question 6</div>
+          <div class="question-text">Students who do not sign up before Friday lunchtime...</div>
+          <div class="mcq-options" id="opts-s-6" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('s-6', 'A', 'A')">A. won't be able to choose their afternoon activities next week.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-6', 'B', 'A')">B. will not be able to do afternoon activities next week.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-6', 'C', 'A')">C. will have to work in the afternoons next week.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-6', 'D', 'A')">D. will do any afternoon activity they want</button>
+          </div>
+          <div class="explanation-box" id="exp-s-6">
+            <div class="exp-step-title">1. Dịch nghĩa thông báo:</div>
+            <p>"Nếu bạn không đăng ký trước trưa thứ Sáu, chúng tôi sẽ tự chọn hoạt động thay cho bạn."</p>
+            <div class="exp-step-title">2. Tại sao chọn A?</div>
+            <p>Học sinh không tự đăng ký thì sẽ mất quyền tự chọn hoạt động -> "won't be able to choose their afternoon activities next week" -> <strong>Chọn A</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CÂU HỎI BÀI 2 (TAB 2) -->
+      <div id="exerciseTab2" class="exercise-tab-content" style="display:none;">
+        <h3 style="color:var(--primary-purple); margin-bottom:15px;">SECTION VI: CLOZE PASSAGES (HOA BAN & RONG HOUSE)</h3>
+
+        <h4 style="color:#e91e63; margin-bottom:10px;">Passage 1: Hoa Ban Festival</h4>
+
+        <!-- HB Q1 -->
+        <div class="question-card" id="qcard-hb-1">
+          <div class="question-number">Câu 1 (Hoa Ban - Blank 1)</div>
+          <div class="question-text">It is typical of the (1)______ life of the Thai people.</div>
+          <div class="mcq-options" id="opts-hb-1" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('hb-1', 'A', 'B')">A. minor</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-1', 'B', 'B')">B. cultural</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-1', 'C', 'B')">C. custom</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-1', 'D', 'B')">D. festival</button>
+          </div>
+          <div class="explanation-box" id="exp-hb-1">
+            <div class="exp-step-title">1. Phân tích từ loại:</div>
+            <p>Đứng trước danh từ "life" cần một <strong>Tính từ</strong>: `cultural life` (đời sống văn hóa).</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Nét đặc trưng của đời sống văn hóa người Thái: `cultural life` -> <strong>Chọn B</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s3')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- HB Q2 -->
+        <div class="question-card" id="qcard-hb-2">
+          <div class="question-number">Câu 2 (Hoa Ban - Blank 2)</div>
+          <div class="question-text">...when it (2)______ warmer and hoa ban blossoms...</div>
+          <div class="mcq-options" id="opts-hb-2" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('hb-2', 'A', 'A')">A. gets</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-2', 'B', 'A')">B. goes</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-2', 'C', 'A')">C. comes</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-2', 'D', 'A')">D. runs</button>
+          </div>
+          <div class="explanation-box" id="exp-hb-2">
+            <div class="exp-step-title">1. Collocation chỉ sự chuyển biến thời tiết:</div>
+            <p>Cấu trúc: `get + comparative adj` (trở nên như thế nào) -> `gets warmer` (trở nên ấm áp hơn).</p>
+            <div class="exp-step-title">2. Tại sao chọn A?</div>
+            <p>Thời tiết ấm lên: `gets warmer` -> <strong>Chọn A</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s4')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- HB Q3 -->
+        <div class="question-card" id="qcard-hb-3">
+          <div class="question-number">Câu 3 (Hoa Ban - Blank 3)</div>
+          <div class="question-text">...Hoa Ban Festival is (3)______.</div>
+          <div class="mcq-options" id="opts-hb-3" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('hb-3', 'A', 'D')">A. seen</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-3', 'B', 'D')">B. arranged</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-3', 'C', 'D')">C. observed</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-3', 'D', 'D')">D. celebrated</button>
+          </div>
+          <div class="explanation-box" id="exp-hb-3">
+            <div class="exp-step-title">1. Động từ đi với lễ hội:</div>
+            <p>Lễ hội được tổ chức/kỷ niệm: `a festival is celebrated`.</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Lễ hội hoa ban được tổ chức: `is celebrated` -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s4')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- HB Q4 -->
+        <div class="question-card" id="qcard-hb-4">
+          <div class="question-number">Câu 4 (Hoa Ban - Blank 4)</div>
+          <div class="question-text">This is a great time for everyone, (4)______ for boys and girls.</div>
+          <div class="mcq-options" id="opts-hb-4" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('hb-4', 'A', 'B')">A. largely</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-4', 'B', 'B')">B. especially</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-4', 'C', 'B')">C. generally</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-4', 'D', 'B')">D. typically</button>
+          </div>
+          <div class="explanation-box" id="exp-hb-4">
+            <div class="exp-step-title">1. Trạng từ nhấn mạnh đối tượng cụ thể:</div>
+            <p>Trạng từ: `especially` (đặc biệt là đối với ai đó).</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Đặc biệt là các chàng trai cô gái: `especially for boys and girls` -> <strong>Chọn B</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s5')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- HB Q5 -->
+        <div class="question-card" id="qcard-hb-5">
+          <div class="question-number">Câu 5 (Hoa Ban - Blank 5)</div>
+          <div class="question-text">...for the Thai people to (5)______ for good crops, for happiness...</div>
+          <div class="mcq-options" id="opts-hb-5" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('hb-5', 'A', 'C')">A. ask</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-5', 'B', 'C')">B. look</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-5', 'C', 'C')">C. pray</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-5', 'D', 'C')">D. call</button>
+          </div>
+          <div class="explanation-box" id="exp-hb-5">
+            <div class="exp-step-title">1. Cụm động từ chỉ hành động cúng bái/cầu nguyện:</div>
+            <p>Cấu trúc: `pray FOR good crops` (cầu nguyện cho mùa màng tốt tươi).</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Cầu nguyện mùa màng: `pray for good crops` -> <strong>Chọn C</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s7')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- HB Q6 -->
+        <div class="question-card" id="qcard-hb-6">
+          <div class="question-number">Câu 6 (Hoa Ban - Blank 6)</div>
+          <div class="question-text">...express their special thanks to the Gods and (6)______.</div>
+          <div class="mcq-options" id="opts-hb-6" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('hb-6', 'A', 'D')">A. fathers</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-6', 'B', 'D')">B. relatives</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-6', 'C', 'D')">C. families</button>
+            <button class="mcq-btn" onclick="checkMCQ('hb-6', 'D', 'D')">D. ancestors</button>
+          </div>
+          <div class="explanation-box" id="exp-hb-6">
+            <div class="exp-step-title">1. Đối tượng tâm linh truyền thống:</div>
+            <p>Tạ ơn thần linh và tổ tiên: `the Gods and ancestors`.</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Tổ tiên: `ancestors` -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s7')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <h4 style="color:#e91e63; margin-top:20px; margin-bottom:10px;">Passage 2: The Rong House</h4>
+
+        <!-- Rong Q1 -->
+        <div class="question-card" id="qcard-rg-1">
+          <div class="question-number">Câu 7 (Rong House - Blank 1)</div>
+          <div class="question-text">...built (1)______ the middle of the village.</div>
+          <div class="mcq-options" id="opts-rg-1" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('rg-1', 'A', 'C')">A. on</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-1', 'B', 'C')">B. at</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-1', 'C', 'C')">C. in</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-1', 'D', 'C')">D. under</button>
+          </div>
+          <div class="explanation-box" id="exp-rg-1">
+            <div class="exp-step-title">1. Giới từ chỉ vị trí trung tâm:</div>
+            <p>Cụm từ cố định: `in the middle of...` (ở chính giữa / ở trung tâm của...).</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Ở trung tâm buôn làng: `in the middle of the village` -> <strong>Chọn C</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s9')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Rong Q2 -->
+        <div class="question-card" id="qcard-rg-2">
+          <div class="question-number">Câu 8 (Rong House - Blank 2)</div>
+          <div class="question-text">Yet there are shared (2)______.</div>
+          <div class="mcq-options" id="opts-rg-2" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('rg-2', 'A', 'D')">A. designs</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-2', 'B', 'D')">B. cultures</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-2', 'C', 'D')">C. customs</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-2', 'D', 'D')">D. features</button>
+          </div>
+          <div class="explanation-box" id="exp-rg-2">
+            <div class="exp-step-title">1. Collocation:</div>
+            <p>Cụm danh từ: `shared features` (những nét đặc trưng/điểm chung).</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Những nét đặc trưng chung: `shared features` -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s13')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Rong Q3 -->
+        <div class="question-card" id="qcard-rg-3">
+          <div class="question-number">Câu 9 (Rong House - Blank 3)</div>
+          <div class="question-text">The most distinction of the decor of the Rong House is the (3)______ of the brilliant God of Sun.</div>
+          <div class="mcq-options" id="opts-rg-3" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('rg-3', 'A', 'C')">A. painting</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-3', 'B', 'C')">B. photo</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-3', 'C', 'C')">C. image</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-3', 'D', 'C')">D. portrait</button>
+          </div>
+          <div class="explanation-box" id="exp-rg-3">
+            <div class="exp-step-title">1. Danh từ hình ảnh chạm khắc:</div>
+            <p>Hình ảnh của Thần Mặt Trời: `the image of the God of Sun`.</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Hình tượng/hình ảnh: `image` -> <strong>Chọn C</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s16')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Rong Q4 -->
+        <div class="question-card" id="qcard-rg-4">
+          <div class="question-number">Câu 10 (Rong House - Blank 4)</div>
+          <div class="question-text">The Rong House is a (4)______ of the culture of Central Highlanders...</div>
+          <div class="mcq-options" id="opts-rg-4" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('rg-4', 'A', 'B')">A. signal</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-4', 'B', 'B')">B. symbol</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-4', 'C', 'B')">C. sign</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-4', 'D', 'B')">D. scene</button>
+          </div>
+          <div class="explanation-box" id="exp-rg-4">
+            <div class="exp-step-title">1. Danh từ mang nghĩa biểu tượng:</div>
+            <p>Biểu tượng của nền văn hóa: `a symbol of the culture`.</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Biểu tượng: `symbol` -> <strong>Chọn B</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s17')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Rong Q5 -->
+        <div class="question-card" id="qcard-rg-5">
+          <div class="question-number">Câu 11 (Rong House - Blank 5)</div>
+          <div class="question-text">It is a (5)______ of the whole village.</div>
+          <div class="mcq-options" id="opts-rg-5" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('rg-5', 'A', 'D')">A. design</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-5', 'B', 'D')">B. respect</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-5', 'C', 'D')">C. proud</button>
+            <button class="mcq-btn" onclick="checkMCQ('rg-5', 'D', 'D')">D. pride</button>
+          </div>
+          <div class="explanation-box" id="exp-rg-5">
+            <div class="exp-step-title">1. Phân biệt từ loại:</div>
+            <p>Đứng sau mạo từ "a" cần một <strong>Danh từ</strong>: `pride` (niềm tự hào). `Proud` là tính từ.</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Niềm tự hào của cả buôn làng: `a pride of the whole village` -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s18')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CÂU HỎI BÀI 3 (TAB 3) -->
+      <div id="exerciseTab3" class="exercise-tab-content" style="display:none;">
+        <h3 style="color:var(--primary-purple); margin-bottom:15px;">SECTION VII: READING COMPREHENSION (EXAM STRESS & GIFT GIVING)</h3>
+
+        <h4 style="color:#e91e63; margin-bottom:10px;">Passage 1: Teenagers and Exam Stress</h4>
+
+        <!-- ES Q1 -->
+        <div class="question-card" id="qcard-es-1">
+          <div class="question-number">Question 1 (Exam Stress)</div>
+          <div class="question-text">What do teenagers often feel pressure about?</div>
+          <div class="mcq-options" id="opts-es-1" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('es-1', 'A', 'B')">A. sports</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-1', 'B', 'B')">B. exams</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-1', 'C', 'B')">C. relationships</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-1', 'D', 'B')">D. hobbies</button>
+          </div>
+          <div class="explanation-box" id="exp-es-1">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>"Teenagers face a lot of pressure when it comes to exams."</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Áp lực về thi cử: `exams` -> <strong>Chọn B</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s1')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- ES Q2 -->
+        <div class="question-card" id="qcard-es-2">
+          <div class="question-number">Question 2 (Exam Stress)</div>
+          <div class="question-text">All of the following are negative effects of exam stress, EXCEPT?</div>
+          <div class="mcq-options" id="opts-es-2" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('es-2', 'A', 'D')">A. A feeling of tiredness</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-2', 'B', 'D')">B. Not having the desire to eat</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-2', 'C', 'D')">C. A feeling of unhappiness</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-2', 'D', 'D')">D. A desire to sleep too much</button>
+          </div>
+          <div class="explanation-box" id="exp-es-2">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>Bài đọc nêu các triệu chứng: "fatigue (tiredness), loss of appetite (not wanting to eat), anxiety/depression (unhappiness), sleeplessness (mất ngủ)".</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Căng thẳng gây mất ngủ (sleeplessness), chứ không phải muốn ngủ quá nhiều (A desire to sleep too much) -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s4')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- ES Q3 -->
+        <div class="question-card" id="qcard-es-3">
+          <div class="question-number">Question 3 (Exam Stress)</div>
+          <div class="question-text">According to the passage, what can parents do to help their child get over exam stress?</div>
+          <div class="mcq-options" id="opts-es-3" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('es-3', 'A', 'C')">A. Ask their child to sleep more and do more exercise</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-3', 'B', 'C')">B. Spend more time playing with their child</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-3', 'C', 'C')">C. Be supportive and encouraging</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-3', 'D', 'C')">D. Provide their child with helpful study techniques</button>
+          </div>
+          <div class="explanation-box" id="exp-es-3">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>"Parents also have a crucial role to play by providing support, and encouragement."</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Ủng hộ và động viên con cái: `Be supportive and encouraging` -> <strong>Chọn C</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s9')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- ES Q4 -->
+        <div class="question-card" id="qcard-es-4">
+          <div class="question-number">Question 4 (Exam Stress)</div>
+          <div class="question-text">What is the CLOSEST meaning of “effects” as used in the passage?</div>
+          <div class="mcq-options" id="opts-es-4" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('es-4', 'A', 'A')">A. results</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-4', 'B', 'A')">B. causes</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-4', 'C', 'A')">C. symptoms</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-4', 'D', 'A')">D. solutions</button>
+          </div>
+          <div class="explanation-box" id="exp-es-4">
+            <div class="exp-step-title">1. Phân tích nghĩa từ:</div>
+            <p>Effects (n): tác động, kết quả, hậu quả = `results`.</p>
+            <div class="exp-step-title">2. Tại sao chọn A?</div>
+            <p>Effects đồng nghĩa với "results" -> <strong>Chọn A</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s11')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- ES Q5 -->
+        <div class="question-card" id="qcard-es-5">
+          <div class="question-number">Question 5 (Exam Stress)</div>
+          <div class="question-text">What should teenagers do when they feel overwhelmed by stress?</div>
+          <div class="mcq-options" id="opts-es-5" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('es-5', 'A', 'B')">A. keep it to themselves</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-5', 'B', 'B')">B. seek help or guidance</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-5', 'C', 'B')">C. give up studying</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-5', 'D', 'B')">D. avoid talking to anyone</button>
+          </div>
+          <div class="explanation-box" id="exp-es-5">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>"Finding healthy ways to cope with stress and seeking help or guidance when needed can make all the difference for teenagers."</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Tìm kiếm sự giúp đỡ hoặc hướng dẫn: `seek help or guidance` -> <strong>Chọn B</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s12')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- ES Q6 -->
+        <div class="question-card" id="qcard-es-6">
+          <div class="question-number">Question 6 (Exam Stress)</div>
+          <div class="question-text">What’s the OPPOSITE meaning of “normal” in the context of the passage?</div>
+          <div class="mcq-options" id="opts-es-6" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('es-6', 'A', 'C')">A. typical</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-6', 'B', 'C')">B. usual</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-6', 'C', 'C')">C. abnormal</button>
+            <button class="mcq-btn" onclick="checkMCQ('es-6', 'D', 'C')">D. common</button>
+          </div>
+          <div class="explanation-box" id="exp-es-6">
+            <div class="exp-step-title">1. Phân tích từ:</div>
+            <p>Normal (adj): bình thường, phổ biến. Từ TRÁI NGHĨA trực tiếp là `abnormal` (bất thường).</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Normal đối lập với "abnormal" -> <strong>Chọn C</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s11')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <h4 style="color:#e91e63; margin-top:20px; margin-bottom:10px;">Passage 2: Gift-giving in Viet Nam</h4>
+
+        <!-- GG Q1 -->
+        <div class="question-card" id="qcard-gg-1">
+          <div class="question-number">Question 7 (Gift-giving)</div>
+          <div class="question-text">According to the passage, why is gift-giving important in Viet Nam?</div>
+          <div class="mcq-options" id="opts-gg-1" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('gg-1', 'A', 'D')">A. Because it helps to establish a friendship.</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-1', 'B', 'D')">B. Because it's common in Vietnamese culture.</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-1', 'C', 'D')">C. Because it's the best way to build up a stable relationship.</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-1', 'D', 'D')">D. Because personal relationships play a vital role in Vietnamese culture.</button>
+          </div>
+          <div class="explanation-box" id="exp-gg-1">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>"Gift-giving is important in Viet Nam because of the significance of interpersonal relationships in Vietnamese culture."</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Mối quan hệ giữa các cá nhân đóng vai trò then chốt: `personal relationships play a vital role` -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s13')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- GG Q2 -->
+        <div class="question-card" id="qcard-gg-2">
+          <div class="question-number">Question 8 (Gift-giving)</div>
+          <div class="question-text">Which of the followings should not be a reason for gift-giving?</div>
+          <div class="mcq-options" id="opts-gg-2" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('gg-2', 'A', 'B')">A. To show appreciation</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-2', 'B', 'B')">B. To bribe somebody</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-2', 'C', 'B')">C. To express gratitude</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-2', 'D', 'B')">D. To show affection</button>
+          </div>
+          <div class="explanation-box" id="exp-gg-2">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>"First and foremost, do not encourage corruption. There is a clear cut between gift-giving and bribery."</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Tặng quà không được nhằm mục đích hối lộ (To bribe somebody) -> <strong>Chọn B</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s14')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- GG Q3 -->
+        <div class="question-card" id="qcard-gg-3">
+          <div class="question-number">Question 9 (Gift-giving)</div>
+          <div class="question-text">When giving a gift, you should ________.</div>
+          <div class="mcq-options" id="opts-gg-3" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('gg-3', 'A', 'C')">A. wrap it in black or white paper</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-3', 'B', 'C')">B. give it in the business meeting</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-3', 'C', 'C')">C. never give sharp objects, such as knives or scissors</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-3', 'D', 'C')">D. avoid giving it on a private occasion</button>
+          </div>
+          <div class="explanation-box" id="exp-gg-3">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>"Gifts that symbolize cutting such as scissors, knives, and other sharp objects should be avoided because they mean the cutting of the relationship."</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Tuyệt đối tránh tặng các vật sắc nhọn: `never give sharp objects, such as knives or scissors` -> <strong>Chọn C</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s19')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- GG Q4 -->
+        <div class="question-card" id="qcard-gg-4">
+          <div class="question-number">Question 10 (Gift-giving)</div>
+          <div class="question-text">When receiving a gift, you should ________.</div>
+          <div class="mcq-options" id="opts-gg-4" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('gg-4', 'A', 'A')">A. always say "thank you"</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-4', 'B', 'A')">B. try to find what is it</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-4', 'C', 'A')">C. open it in front of the giver</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-4', 'D', 'A')">D. ask your host to open it</button>
+          </div>
+          <div class="explanation-box" id="exp-gg-4">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>"Regardless of when it is opened or what it is, profuse thanks are always appropriate."</p>
+            <div class="exp-step-title">2. Tại sao chọn A?</div>
+            <p>Luôn nói lời cảm ơn chân thành: `always say "thank you"` -> <strong>Chọn A</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s22')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- GG Q5 -->
+        <div class="question-card" id="qcard-gg-5">
+          <div class="question-number">Question 11 (Gift-giving)</div>
+          <div class="question-text">Which of the following is NOT true about gift-giving customs in Viet Nam?</div>
+          <div class="mcq-options" id="opts-gg-5" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('gg-5', 'A', 'D')">A. Gift-giving is a good way of strengthening relationships.</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-5', 'B', 'D')">B. Gifts for your partners should be given at private occasions.</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-5', 'C', 'D')">C. You should avoid giving anything sharp.</button>
+            <button class="mcq-btn" onclick="checkMCQ('gg-5', 'D', 'D')">D. It is considered rude not to open the gift in front of the giver.</button>
+          </div>
+          <div class="explanation-box" id="exp-gg-5">
+            <div class="exp-step-title">1. Dẫn chứng trong bài đọc:</div>
+            <p>"Vietnamese may or may not open these gifts when they are received; leave the option to them."</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Người Việt có thể mở hoặc không mở quà ngay trước mặt người tặng tùy ý, do đó bảo "bất lịch sự nếu không mở quà trước mặt người tặng" là SAI -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s20')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CÂU HỎI BÀI 4 (TAB 4) -->
+      <div id="exerciseTab4" class="exercise-tab-content" style="display:none;">
+        <h3 style="color:var(--primary-purple); margin-bottom:15px;">SECTION IX: SENTENCE INSERTION (QUESTIONS 1 - 8)</h3>
+
+        <h4 style="color:#e91e63; margin-bottom:10px;">Text 1: Country Life vs City Life</h4>
+
+        <!-- SI Q1 -->
+        <div class="question-card" id="qcard-si-1">
+          <div class="question-number">Câu 1 (Country Life - Blank 1)</div>
+          <div class="question-text">If you are thinking about moving to the country... but are not sure if it is a good idea, (1)______.</div>
+          <div class="mcq-options" id="opts-si-1" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('si-1', 'A', 'C')">A. which has a soothing effect on both the mind and the body.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-1', 'B', 'C')">B. but they are more connected and open.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-1', 'C', 'C')">C. it may help to look at the benefits of country life.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-1', 'D', 'C')">D. you will not be breathing any potentially toxic fumes in the country.</button>
+          </div>
+          <div class="explanation-box" id="exp-si-1">
+            <div class="exp-step-title">1. Mệnh đề chính cho câu điều kiện:</div>
+            <p>Mệnh đề điều kiện `If you are thinking...` cần mệnh đề chính: `it may help to look at the benefits of country life`.</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Xem xét các lợi ích cuộc sống nông thôn: `it may help to look at the benefits...` -> <strong>Chọn C</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p4-s2')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- SI Q2 -->
+        <div class="question-card" id="qcard-si-2">
+          <div class="question-number">Câu 2 (Country Life - Blank 2)</div>
+          <div class="question-text">Homes in the countryside are surrounded by nature (2)______.</div>
+          <div class="mcq-options" id="opts-si-2" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('si-2', 'A', 'A')">A. which has a soothing effect on both the mind and the body.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-2', 'B', 'A')">B. but they are more connected and open.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-2', 'C', 'A')">C. it may help to look at the benefits of country life.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-2', 'D', 'A')">D. you will not be breathing any potentially toxic fumes in the country.</button>
+          </div>
+          <div class="explanation-box" id="exp-si-2">
+            <div class="exp-step-title">1. Mệnh đề quan hệ bổ nghĩa cho thiên nhiên:</div>
+            <p>Được bao quanh bởi thiên nhiên, điều này xoa dịu tâm trí và cơ thể: `which has a soothing effect on both the mind and the body`.</p>
+            <div class="exp-step-title">2. Tại sao chọn A?</div>
+            <p>Mệnh đề quan hệ: `which has a soothing effect...` -> <strong>Chọn A</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p4-s4')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- SI Q3 -->
+        <div class="question-card" id="qcard-si-3">
+          <div class="question-number">Câu 3 (Country Life - Blank 3)</div>
+          <div class="question-text">Due to virtual absence of cars and factories, (3)______.</div>
+          <div class="mcq-options" id="opts-si-3" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('si-3', 'A', 'D')">A. which has a soothing effect on both the mind and the body.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-3', 'B', 'D')">B. but they are more connected and open.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-3', 'C', 'D')">C. it may help to look at the benefits of country life.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-3', 'D', 'D')">D. you will not be breathing any potentially toxic fumes in the country.</button>
+          </div>
+          <div class="explanation-box" id="exp-si-3">
+            <div class="exp-step-title">1. Kết quả của việc không có nhà máy và xe cộ:</div>
+            <p>Không có nhà máy -> bạn sẽ không phải hít thở khói bụi độc hại: `you will not be breathing any potentially toxic fumes...`.</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Không hít khói độc: `you will not be breathing...` -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p4-s5')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- SI Q4 -->
+        <div class="question-card" id="qcard-si-4">
+          <div class="question-number">Câu 4 (Country Life - Blank 4)</div>
+          <div class="question-text">Communities in the country are much smaller (4)______.</div>
+          <div class="mcq-options" id="opts-si-4" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('si-4', 'A', 'B')">A. which has a soothing effect on both the mind and the body.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-4', 'B', 'B')">B. but they are more connected and open.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-4', 'C', 'B')">C. it may help to look at the benefits of country life.</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-4', 'D', 'B')">D. you will not be breathing any potentially toxic fumes in the country.</button>
+          </div>
+          <div class="explanation-box" id="exp-si-4">
+            <div class="exp-step-title">1. Mệnh đề đối lập:</div>
+            <p>Cộng đồng nhỏ hơn nhưng gắn kết và cởi mở hơn: `but they are more connected and open`.</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Gắn kết và cởi mở hơn: `but they are more connected and open` -> <strong>Chọn B</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p4-s8')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <h4 style="color:#e91e63; margin-top:20px; margin-bottom:10px;">Text 2: Hobbies in Daily Life</h4>
+
+        <!-- SI Q5 -->
+        <div class="question-card" id="qcard-si-5">
+          <div class="question-number">Câu 5 (Hobbies - Blank 5)</div>
+          <div class="question-text">(5)______, engaging in creative and artistic pursuits...</div>
+          <div class="mcq-options" id="opts-si-5" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('si-5', 'A', 'B')">A. Hobby is something that a person develops from childhood</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-5', 'B', 'B')">B. Hobbies can include collecting themed items and objects</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-5', 'C', 'B')">C. We all need a time of leisure for ourselves</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-5', 'D', 'B')">D. we all get so busy in our life routine that sometimes we forget to give out time for our hobbies.</button>
+          </div>
+          <div class="explanation-box" id="exp-si-5">
+            <div class="exp-step-title">1. Chuỗi liệt kê sở thích:</div>
+            <p>Sở thích bao gồm sưu tầm đồ vật...: `Hobbies can include collecting themed items and objects, engaging in...`.</p>
+            <div class="exp-step-title">2. Tại sao chọn B?</div>
+            <p>Liệt kê các loại hình sở thích: `Hobbies can include collecting...` -> <strong>Chọn B</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p4-s11')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- SI Q6 -->
+        <div class="question-card" id="qcard-si-6">
+          <div class="question-number">Câu 6 (Hobbies - Blank 6)</div>
+          <div class="question-text">(6)______, more specifically during primary school, to late life.</div>
+          <div class="mcq-options" id="opts-si-6" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('si-6', 'A', 'A')">A. Hobby is something that a person develops from childhood</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-6', 'B', 'A')">B. Hobbies can include collecting themed items and objects</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-6', 'C', 'A')">C. We all need a time of leisure for ourselves</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-6', 'D', 'A')">D. we all get so busy in our life routine that sometimes we forget to give out time for our hobbies.</button>
+          </div>
+          <div class="explanation-box" id="exp-si-6">
+            <div class="exp-step-title">1. Mốc thời gian phát triển từ nhỏ:</div>
+            <p>Sở thích hình thành từ tuổi thơ ("from childhood... primary school to late life"): `Hobby is something that a person develops from childhood`.</p>
+            <div class="exp-step-title">2. Tại sao chọn A?</div>
+            <p>Phát triển từ thời thơ ấu: `develops from childhood` -> <strong>Chọn A</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p4-s13')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- SI Q7 -->
+        <div class="question-card" id="qcard-si-7">
+          <div class="question-number">Câu 7 (Hobbies - Blank 7)</div>
+          <div class="question-text">In this busy daily schedule, (7)______. Indulging in a hobby is actually good...</div>
+          <div class="mcq-options" id="opts-si-7" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('si-7', 'A', 'D')">A. Hobby is something that a person develops from childhood</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-7', 'B', 'D')">B. Hobbies can include collecting themed items and objects</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-7', 'C', 'D')">C. We all need a time of leisure for ourselves</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-7', 'D', 'D')">D. we all get so busy in our life routine that sometimes we forget to give out time for our hobbies.</button>
+          </div>
+          <div class="explanation-box" id="exp-si-7">
+            <div class="exp-step-title">1. Mệnh đề chính của câu:</div>
+            <p>Trong lịch trình bận rộn, chúng ta quá bận rộn đến mức quên dành thời gian cho sở thích: `we all get so busy in our life routine that sometimes we forget...`.</p>
+            <div class="exp-step-title">2. Tại sao chọn D?</div>
+            <p>Quên dành thời gian cho sở thích: `we all get so busy...` -> <strong>Chọn D</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p4-s15')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- SI Q8 -->
+        <div class="question-card" id="qcard-si-8">
+          <div class="question-number">Câu 8 (Hobbies - Blank 8)</div>
+          <div class="question-text">(8)______ and that particular time is when we like to do something that gives us immense happiness.</div>
+          <div class="mcq-options" id="opts-si-8" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('si-8', 'A', 'C')">A. Hobby is something that a person develops from childhood</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-8', 'B', 'C')">B. Hobbies can include collecting themed items and objects</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-8', 'C', 'C')">C. We all need a time of leisure for ourselves</button>
+            <button class="mcq-btn" onclick="checkMCQ('si-8', 'D', 'C')">D. we all get so busy in our life routine that sometimes we forget to give out time for our hobbies.</button>
+          </div>
+          <div class="explanation-box" id="exp-si-8">
+            <div class="exp-step-title">1. Câu kết luận bài đọc:</div>
+            <p>Tất cả chúng ta đều cần thời gian thư nhàn cho bản thân ("a time of leisure"): `We all need a time of leisure for ourselves`.</p>
+            <div class="exp-step-title">2. Tại sao chọn C?</div>
+            <p>Cần thời gian thư nhàn: `We all need a time of leisure for ourselves` -> <strong>Chọn C</strong>.</p>
+            <button class="btn-locate" onclick="locateEvidence('p4-s17')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Bar Submit -->
+      <div class="action-bar">
+        <button class="btn-submit-test" onclick="submitTest()">🏆 NỘP BÀI THI</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Score Modal -->
+  <div class="modal-overlay" id="scoreModal">
+    <div class="modal-card">
+      <h2 style="color: var(--primary-purple); font-size: 1.8rem;">🎉 KẾT QUẢ BÀI THI 🎉</h2>
+      <div class="modal-score" id="scoreValue">0 / 36</div>
+      <div class="modal-badge" id="scoreBadge">THIÊN TÀI IELTS 9.0!</div>
+      <p id="scoreComment" style="color: #555; line-height: 1.5; font-weight: 700;">Em làm bài rất tuyệt vời!</p>
+      <button class="btn-submit-test" style="margin-top: 20px; font-size: 0.95rem; padding: 10px 25px;" onclick="closeModal()">ĐÓNG & XEM LẠI BÀI</button>
+    </div>
+  </div>
+
+  <script>
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playCorrectSound() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.12);
+      osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.35);
+    }
+
+    function playWrongSound() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(130.81, audioCtx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.3);
+    }
+
+    let totalQuestions = 36;
+    let userAnswers = {};
+    let timerSeconds = 25 * 60;
+    let timerInterval = null;
+    let isTimerRunning = false;
+
+    function toggleTimer() {
+      const btn = document.getElementById('btnTimerControl');
+      if (!isTimerRunning) {
+        isTimerRunning = true;
+        btn.innerText = "TẠM DỪNG";
+        btn.style.background = "#ff9800";
+        timerInterval = setInterval(updateTimer, 1000);
+      } else {
+        isTimerRunning = false;
+        btn.innerText = "TIẾP TỤC";
+        btn.style.background = "#4caf50";
+        clearInterval(timerInterval);
+      }
+    }
+
+    function updateTimer() {
+      if (timerSeconds <= 0) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        document.getElementById('timerDisplay').innerText = "00:00";
+        alert("⏰ Đã hết giờ làm bài, vui lòng nộp bài nhé!");
+        disableInputs();
+        submitTest();
+        return;
+      }
+      timerSeconds--;
+      let m = Math.floor(timerSeconds / 60);
+      let s = timerSeconds % 60;
+      document.getElementById('timerDisplay').innerText = 
+        `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+    }
+
+    function disableInputs() {
+      document.querySelectorAll('input, select, button.mcq-btn').forEach(el => {
+        el.disabled = true;
+      });
+    }
+
+    // CHUYỂN TAB ĐỘC LẬP TỪNG BÀI (Chỉ hiện bài đọc & câu hỏi thuộc riêng Tab đó)
+    function switchTab(tabIndex) {
+      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx + 1 === tabIndex);
+      });
+
+      document.querySelectorAll('.passage-content').forEach((p, idx) => {
+        p.style.display = (idx + 1 === tabIndex) ? 'block' : 'none';
+      });
+
+      document.querySelectorAll('.exercise-tab-content').forEach((ex, idx) => {
+        ex.style.display = (idx + 1 === tabIndex) ? 'block' : 'none';
+      });
+
+      document.getElementById('passagePane').scrollTop = 0;
+      document.getElementById('exercisePane').scrollTop = 0;
+    }
+
+    function toggleTranslation(id) {
+      const el = document.getElementById(id);
+      el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function updateProgress() {
+      let count = Object.keys(userAnswers).length;
+      let pct = (count / totalQuestions) * 100;
+      document.getElementById('progressBarFill').style.width = pct + '%';
+    }
+
+    function checkMCQ(qKey, chosenOptKey, correctOptKey) {
+      const container = document.getElementById(`opts-${qKey}`);
+      const btns = container.querySelectorAll('.mcq-btn');
+      const exp = document.getElementById(`exp-${qKey}`);
+
+      btns.forEach(btn => btn.disabled = true);
+      exp.style.display = 'block';
+
+      btns.forEach(btn => {
+        let optText = btn.innerText.trim();
+        let isChosen = optText.startsWith(chosenOptKey);
+        let isCorrect = optText.startsWith(correctOptKey);
+
+        if (isChosen) {
+          if (chosenOptKey === correctOptKey) {
+            btn.classList.add('correct');
+            playCorrectSound();
+            userAnswers[qKey] = true;
+            launchConfetti();
+          } else {
+            btn.classList.add('wrong');
+            playWrongSound();
+            userAnswers[qKey] = false;
+          }
+        }
+        if (isCorrect && chosenOptKey !== correctOptKey) {
+          btn.classList.add('correct');
+        }
+      });
+      updateProgress();
+    }
+
+    function locateEvidence(sentenceId) {
+      if (sentenceId.startsWith('p1')) switchTab(1);
+      else if (sentenceId.startsWith('p2')) switchTab(2);
+      else if (sentenceId.startsWith('p3')) switchTab(3);
+      else if (sentenceId.startsWith('p4')) switchTab(4);
+
+      document.querySelectorAll('.sentence').forEach(s => s.classList.remove('sentence-target'));
+      const target = document.getElementById(sentenceId);
+      if (target) {
+        target.classList.add('sentence-target');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    document.addEventListener('mouseup', function() {
+      const selection = window.getSelection();
+      if (!selection.isCollapsed && selection.toString().trim().length > 0) {
+        const range = selection.getRangeAt(0);
+        const span = document.createElement('span');
+        span.className = 'custom-highlight';
+        try {
+          range.surroundContents(span);
+        } catch (e) {}
+      }
+    });
+
+    function shuffleOptionsOnLoad() {
+      document.querySelectorAll('.mcq-options').forEach(container => {
+        const buttons = Array.from(container.children);
+        for (let i = buttons.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [buttons[i], buttons[j]] = [buttons[j], buttons[i]];
+        }
+        buttons.forEach(btn => container.appendChild(btn));
+      });
+    }
+
+    function submitTest() {
+      let score = 0;
+      for (let k in userAnswers) {
+        if (userAnswers[k] === true) score++;
+      }
+
+      document.getElementById('scoreValue').innerText = `${score} / ${totalQuestions}`;
+      const badge = document.getElementById('scoreBadge');
+      const comment = document.getElementById('scoreComment');
+
+      let pct = (score / totalQuestions) * 100;
+      if (pct === 100) {
+        badge.innerText = "🏆 THIÊN TÀI IELTS 9.0!";
+        comment.innerText = "Xuất sắc tuyệt đối! Em đã làm đúng 100% toàn bộ bài thi!";
+      } else if (pct >= 70) {
+        badge.innerText = "🌟 LÀM TỐT LẮM!";
+        comment.innerText = "Kỹ năng đọc hiểu và tư duy từ vựng rất ấn tượng! Đọc lại giải thích để đạt điểm tuyệt đối nhé!";
+      } else if (pct >= 50) {
+        badge.innerText = "👍 KHÁ TỐT!";
+        comment.innerText = "Em đã làm tương đối tốt. Hãy đọc kỹ lại phần giải thích để cải thiện các câu sai!";
+      } else {
+        badge.innerText = "💪 CỐ LÊN NHÉ!";
+        comment.innerText = "Đừng nản lòng! Đọc kỹ các câu dịch và từ vựng mở rộng để sẵn sàng cho bài sau nhé!";
+      }
+
+      document.getElementById('scoreModal').style.display = 'flex';
+      launchConfetti();
+    }
+
+    function closeModal() {
+      document.getElementById('scoreModal').style.display = 'none';
+    }
+
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      let pieces = [];
+      const colors = ['#ff80ab', '#8854c0', '#00D26A', '#FDCB6E', '#00C9A7'];
+      
+      for (let i = 0; i < 70; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speed: Math.random() * 4 + 2,
+          rotation: Math.random() * 360,
+          rotSpeed: Math.random() * 6 - 3
+        });
+      }
+
+      let animationFrame;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          p.y += p.speed;
+          p.rotation += p.rotSpeed;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        });
+        pieces = pieces.filter(p => p.y < canvas.height);
+        if (pieces.length > 0) {
+          animationFrame = requestAnimationFrame(animate);
+        } else {
+          cancelAnimationFrame(animationFrame);
+        }
+      }
+      animate();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      shuffleOptionsOnLoad();
+    });
+  </script>
+</body>
+</html>
